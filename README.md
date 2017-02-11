@@ -6,14 +6,19 @@ Intended for Android Studio 2.2.3
 
 Quickstart:
 
-1. Thunderword Experimental installed on your Android device.
+1. Thunderword Experimental should first be installed on your Android device.
 2. Place testing stories in a shared folder like /sdcard/mygames with ADB push or download via web browser. Glulx stories are recommended. The Git interpreter is the default for Glulx data files.
-3. Edit the code in this project to have the correct paths to your game data files from step 2.
-4. Build and deploy the app onto your device with Android Studio. If permissions are correct, a button to open RemoteSimpleActivity should appear.
+3. Edit the code in this Thunderstrike project to have the correct paths to your game data files from step 2. Look for the method named launchStoryClick in RemoteSimpleActivity.java
+4. Build and deploy this Thunderstrike app onto your device with Android Studio. If file permissions are correct, a button to open RemoteSimpleActivity should appear.
 5. On the RemoteSimpleActivity there are two green TextView 'buttons' at the top (labeled LaunchA / B), press one to instruct Thunderword to load one of the datafiles you setup in step 2. You can press these buttons at any time to force Thunderword to restart the interpreter (it will end the story and start the story data file provided).
 6. You shold start to get JSON and game story data to appear on your screen shortly after pressing the LaunchA TextView.
 
-This is primitive in user interface and is intended to demonstrate the techniques for interfacing with Thundword engines.
+This is primitive in user interface and is intended to demonstrate the techniques for interfacing with Thunderword engines. What to look for in this source code:
+
+1. AndroidManifest.xml has the strings you need for broadcast receiving the JSON in your own apps.
+2. The sendBroadcast intent for instructing Thunderword to open your story data file.
+3. The Engine State codes to know if Thunderword has shut down your story
+4.  ... more tips to come ....
 
 From here on out, it's up to you how to make best use of the JSON that is being provided to your app.
 
