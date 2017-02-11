@@ -2,12 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.wakereality.thunderstrike">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -15,6 +21,30 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".RemoteSimpleActivity"
+                  android:launchMode="singleTask"
+            >
+
+        </activity>
+
+        <!--  Selected naming convention is general-purpose and other apps could use it -->
+        <receiver android:name=".RemGlkOutputBroadcastReceiver">
+            <intent-filter>
+                <action android:name="interactivefiction.remglk.JSON_OUTPUT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- to allow preference selection of Production app vs. Experimental, listen to both -->
+        <receiver android:name=".ThunderwordEngineRunningStatusBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.wakereality.thunderword.experimental.enginestatus.RUNNING_STATUS" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.wakereality.thunderword.enginestatus.RUNNING_STATUS" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

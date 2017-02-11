@@ -12,7 +12,56 @@
     tools:context="com.wakereality.thunderstrike.MainActivity">
 
     <TextView
+        android:id="@+id/textView0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Hello and welcome to Thunderstrike, the RemGlk example app."
+        />
+
+    <Button
+        android:id="@+id/launchClickButton0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remote ScrollingActivity"
+        android:onClick="launchClick"
+        android:layout_below="@id/textView0"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:id="@+id/launchClickButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remote SimpleActivity"
+        android:onClick="launchClick"
+        android:layout_below="@id/launchClickButton0"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/message_file_permissions_need0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Permissions to External Storage not yet granted?"
+        android:layout_below="@+id/launchClickButton1"
+        />
+
+    <TextView
+        android:id="@+id/message_file_permissions_ready0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="File access permissions are now ready, press the button to get things started. Thank you!"
+        android:visibility="gone"
+        android:layout_below="@+id/message_file_permissions_need0"
+        />
+
+    <Button
+        android:id="@+id/button_permissions_ready0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go!"
+        android:visibility="gone"
+        android:layout_below="@+id/message_file_permissions_ready0"
+        />
+
 </RelativeLayout>
