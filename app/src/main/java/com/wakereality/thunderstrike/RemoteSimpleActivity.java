@@ -266,7 +266,10 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 //    database of installed/managed games.
                 // In the absence of a "path" Extra, "datapick" will be checked
                 // NOTE that this datapick example has automation in thunderword and will generate
-                //   several actions / stream of JSON in the first 20 or so seconds.
+                //   several actions / stream of JSON in the first 20 or so seconds.  This
+                //   story ist he same one on the Thunderword welcome screen menu option labeled
+                //   "Launch Test T0" that was added in Thunderword release 121.
+                // NOTE: hash is case sensitive, all lowercase
                 intent.putExtra("datapick", "aaff415aeacdf8aa73ee049f7842a609b82306c97c9f07b8e95ce7ab87ea");
                 break;
         }
@@ -395,6 +398,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                     case "RemGlk_debug":
                     case "remglk_debug":
                     case "EngineError":
+                    case "blorberror":
                         remGlkInfoOutputTextView0.append(jsonStanza.toString() + "\n");
                         break;
                     default:
