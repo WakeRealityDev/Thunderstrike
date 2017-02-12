@@ -36,7 +36,7 @@ The JSON is from a modified version of RemGlk that is inside Thunderword. The mo
 
 The standard RemGlk JSON is documented here:  http://eblong.com/zarf/glk/remglk/docs.html
 
-NOTE: Right now thoe code probably yields no control over the RemGlk INIT to set the desired screen size emulation of RemGlk - Thunderword is doing that on it's own. Future updates should provide a way to specify those parameters along with the data file.
+NOTE: Right now the code probably yields no control over the RemGlk INIT to set the desired screen size emulation of RemGlk - Thunderword is doing that on it's own. Future updates should provide a way to specify those parameters along with the data file.
 
 
 Target Audience
