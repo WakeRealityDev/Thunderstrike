@@ -25,6 +25,15 @@ From here on out, it's up to you how to make best use of the JSON that is being 
 This is early and rushed, more should be coming in the future. Thank you!
 
 
+The JSON
+==========
+The JSON is from a modified version of RemGlk that is inside Thunderword. The modifications are basically { added colors support, style sheet tuples on Glk windows, status related to the loading and unloading of the interpreter engine, errors and deubgging output related to incomplete code }. The good news is that the field names and values are the same as the stock RemGlk - so you can use an unmodified version on your desktop system if you wish to work wtihotu the output in different ways. More documentation on the additions to the JSON data is forthcoming.
+
+The standard RemGlk JSON is documented here:  http://eblong.com/zarf/glk/remglk/docs.html
+
+NOTE: Right now thoe code probably yeilds no control over the RemGlk INIT to set the desired screen size emulation of RemGlk - Thunderword is doing that on it's own. Future updates should provide a way to specify those parameters along with the data file.
+
+
 License
 ==========
 The code in this Thunderstrike project is licensed Apache 2.0 to allow you to easily mix with any of the Android SDK samples provided by Google.
