@@ -11,6 +11,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.wakereality.thunderstrike.RemoteSimpleActivity">
 
+    <!--
+    Makes no effort to deal with overflow.
+    Yes, you will need a wide enough screen or go landscape to reach those right-most clicks
+    -->
     <RelativeLayout
         android:id="@+id/topRemoteStatusLayout"
         android:layout_width="match_parent"
@@ -41,6 +45,28 @@
             android:layout_marginLeft="4dp"
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickATextView0"
+            android:layout_alignBaseline="@id/topStatusTextView0"
+            android:background="#00FF00"
+            />
+        <TextView
+            android:id="@+id/launchStoryPickCTextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[C]"
+            android:layout_marginLeft="4dp"
+            android:onClick="launchStoryClick"
+            android:layout_toRightOf="@id/launchStoryPickBTextView0"
+            android:layout_alignBaseline="@id/topStatusTextView0"
+            android:background="#00FF00"
+            />
+        <TextView
+            android:id="@+id/launchStoryPickDTextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[head D]"
+            android:layout_marginLeft="4dp"
+            android:onClick="launchStoryClick"
+            android:layout_toRightOf="@id/launchStoryPickCTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
             android:background="#00FF00"
             />

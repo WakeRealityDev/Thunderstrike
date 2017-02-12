@@ -36,6 +36,10 @@ import org.json.JSONObject;
  *
  * The JSON parsing in this example is primitive and uses built-in JSONObject/JSONArray structures
  *   Anyone is free to use alternate libraries for more sophisticated mapping of the RemGlk JSON.
+ *
+ * ToDo: #1 add 'clear' TextView buttons to wipe what's on the output for the person using this app.
+ * ToDo: #2 the RemGlk JSON for init of screen size and features is not currently under control of the outside app.
+ * ToDo: #3 convention for picking a specific favored interpreter for the same type of binary story file, Example: "Git" or "Glulxe" for "Glulx" binaries.
  */
 
 public class RemoteSimpleActivity extends AppCompatActivity {
@@ -49,6 +53,9 @@ public class RemoteSimpleActivity extends AppCompatActivity {
     protected EditText inputEditText0;
     protected int clearScreenCount = 0;
     protected int inputLastGenSend = -1;
+    protected int redrawCount = 0;
+    protected int thunderWordRemoteEngineStateCode = -1;
+    protected int remGlkUpdateGeneration = -1;
 
     private class GlkInputForWindow {
         public int windowId;
@@ -62,7 +69,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         }
     }
 
-    protected void postRemGlkInputFromPlayer(String inputText) {
+    protected void postRemGlkInputFromPlayerToThunderword(String inputText) {
         JSONObject tempJSONObject = new JSONObject();
         int thisGen = inputForSingleGlkWindow.gen;
         try {
@@ -100,7 +107,8 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 EventBus.getDefault().register(this);
             }
             onCreateLayoutSpecific();
-            setupThunderClapRemoteExtras();
+            // Setup a local sender for player input to Thunderword app
+            inputSender = new RemGlkInputSender(getApplicationContext());
         } catch (Exception e) {
             Log.e("RemoteSimple", "[activityPrep][storyActivity][startActivity] Exception in onCreate", e);
         }
@@ -132,13 +140,13 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                     // Strategy for line-only input mode is to stay in activity until [enter] key.
                     if (latestText.toString().endsWith("\n")) {
                         // RemGlk will not like empty input
-                        postRemGlkInputFromPlayer(latestText.toString());
+                        postRemGlkInputFromPlayerToThunderword(latestText.toString());
                         editable.clear();
                     }
                 } else {
                     // ToDo: there is no conversion of RemGlk codes for special keys.
                     if (latestText.toString().length() > 0) {
-                        postRemGlkInputFromPlayer(latestText.toString());
+                        postRemGlkInputFromPlayerToThunderword(latestText.toString());
                         editable.clear();
                     }
                 }
@@ -146,14 +154,6 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         });
     }
 
-    public void setupThunderClapRemoteExtras() {
-        inputSender = new RemGlkInputSender(getApplicationContext());
-    }
-
-
-    protected int redrawCount = 0;
-    protected int thunderWordRemoteEngineStateCode = -1;
-    protected int remGlkUpdateGeneration = -1;
 
     public void redrawEngineOutput() {
         redrawCount++;
@@ -166,36 +166,79 @@ public class RemoteSimpleActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // ToDO: May be double-checking registration, but thought it was best to show near paired onPause deregister
+        // Try to be ready for events incoming before triggering any remote Thunderword activity.
+        if (! EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         redrawEngineOutput();
     }
 
-    public void launchStoryClick(View view) {
-        Log.i("RemoteSimple", "click on launchStoryClick button");
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Unregister EventBus - this means that incoming Thunderword content will no longer be
+        //  processed, that the JSON labor stops by this activity if the user switches away from
+        //  the activity.  This may be desired or undesired depending on your app's intention and
+        //  concern for battery usage/etc.
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    public void setupForNewStoryIncoming() {
         // clear output on screen
         storyOutputRawTextView0.setText("");
         remGlkInfoOutputTextView0.setText("");
         // Reset input generation
         inputLastGenSend = -1;
         remGlkUpdateGeneration = -1;
+    }
+
+    public void launchStoryClick(View view) {
+        Log.i("RemoteSimple", "click on launchStoryClick button");
+
+        setupForNewStoryIncoming();
 
         Intent intent = new Intent();
         // Tell Android to start Thunderword app if not already running.
         intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         // Tell Thunderword Glulx story data file, it will pick default engine in absence
-        //   of additional launch parameters.
+        //   of additional launch parameters. The name prefix was specifically selected to encourage
+        //   the Android development community to use this pattern - and not exclusive to Thunderword.
         intent.setAction("interactivefiction.engine.glulx");
-        // Readable/accessible Data file for the story.
+
+        // Tell Thunderword to be headless with a value of 0, no screen activity & only RemGlk data exchange.
+        // NOTE: For purposes of testing a "launcher app" that is not headless, values of 1 is for
+        //    the Bidirectional Scrolling activity, 2 is Standard scrolling Activity.
+        //    Layout choices and preferences are still work-in-progress areas of Thunderword.
+        intent.putExtra("activity", 0);
+
+        // Readable/publicly accessible Data file for the story to launch.
         // Future: Alternately, your app can be content provider for secure exchange of data file.
+        //    Thunderword already has code to take files from content providers from the Android
+        //    download manager. What's left to do is to establish a convention for peer apps.
         switch (view.getId()) {
             case R.id.launchStoryPickATextView0:
-                intent.putExtra("path", "/sdcard/storyGames0/rover.gblorb");
+                intent.putExtra("path", "/sdcard/myfiction/rover.gblorb");
                 break;
             case R.id.launchStoryPickBTextView0:
-                intent.putExtra("path", "/sdcard/storyGames_TechTest0/CounterfeitMonkey_release6.gblorb");
+                intent.putExtra("path", "/sdcard/myfiction/CounterfeitMonkey_release6.gblorb");
+                break;
+            case R.id.launchStoryPickCTextView0:
+                // Z-code / Z-Machine instead of Glulx code for sake of demonstration of launcher app.
+                intent.putExtra("path", "/sdcard/myfiction/TheEmptyRoom.zblorb");
+                intent.setAction("interactivefiction.engine.zmachine");
+                break;
+            case R.id.launchStoryPickDTextView0:
+                // "Head" activity, not "headless" - this is example of launcher app.
+                intent.putExtra("path", "/sdcard/myfiction/CounterfeitMonkey_release6.gblorb");
+                intent.putExtra("activity", 1 /* Bidirectional Scrolling Activity */);
                 break;
         }
-        // Tell Thunderword to be headless, no screen activity & only RemGlk data exchange.
-        intent.putExtra("activity", 0);
+
+        // ToDo: A wise app would check that the file exists before blindly sending it over to Thunderword
+
         sendBroadcast(intent);
     }
 
@@ -247,7 +290,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                                 }
 
                             }
-                            // Blank lines, blank paragraphs
+                            // Blank lines, blank paragraphs. See above "sample from story Counterfeit Monkey" JSON.
                             if (windowContentTextParagraph.toString().equals("{}"))
                             {
                                 storyOutputRawTextView0.append("\n");
@@ -292,9 +335,19 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    It's labeled "primitive" because some would consider JSONObject/JSONArray field-level parsing
+       as non-performant and tedious. Further, it's primitive in the sense that it skips RemGlk
+       data from Thunderword about text colors, Glk style hints, Glk windows, Text Grids, images,
+       and only seeks out the plain-text of a story in the Text Buffer windows.
+
+       This is where the JSON processing starts, the head of each incoming stanza from RemGlk.
+     */
     public void primitiveProcessingRemGlkStanza(JSONObject jsonStanza) {
         try {
             if (jsonStanza.has("type")) {
+                // Some of these are non-standard types that Thunderword has added to the standard
+                //   RemGlk types.
                 switch (jsonStanza.getString("type")) {
                     case "error":
                         break;
@@ -304,8 +357,10 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                     case "blorbstatus":
                     case "remglk_exit":
                     case "remglk_status":
-                    // ToDo: Warning, this name could change given the inconsistent prefix.
+                    // ToDo: Warning, this name could change given the CAPS / inconsistent prefix.
                     case "RemGlk_debug":
+                    case "remglk_debug":
+                    case "EngineError":
                         remGlkInfoOutputTextView0.append(jsonStanza.toString() + "\n");
                         break;
                     default:
@@ -324,8 +379,11 @@ public class RemoteSimpleActivity extends AppCompatActivity {
 
 
     /*
-    ===============================================================================================
+    ================================================================================================
     SECTION: Incoming background events from BroadcastReceivers and Services
+    These Events serve to allow thread choices of execution and to determine if the app is on-screen
+       If the app is not on screen, this Activity will be closed and the Events will silently
+       be dropped as there are no registered receivers.
     */
 
     /*
@@ -341,6 +399,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
     /*
     Will switch to Main thread so that screen can be modified.
     OPTIMIZE: The JSON processing could be done on an ThreadMode.Async & post to TextView.
+       This would be a good idea for very complex JSON processing / layout work.
      */
     @SuppressWarnings("unused")
     @Subscribe(threadMode = ThreadMode.MAIN)

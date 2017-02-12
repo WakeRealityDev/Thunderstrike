@@ -14,7 +14,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-
+/*
+There is nothing of learning importance on this page. It merely checks that external (/sdcard/) file
+  permissions are granted and offers a choice of which activity to open.
+ */
 public class MainActivity extends AppCompatActivity {
 
     protected View rootView;
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         {
             if (rootView != null) {
                 rootView.findViewById(R.id.launchClickButton1).setVisibility(View.VISIBLE);
-               //  rootView.findViewById(R.id.button_permissions_ready0).setVisibility(View.VISIBLE);
+                //  rootView.findViewById(R.id.button_permissions_ready0).setVisibility(View.VISIBLE);
                 rootView.findViewById(R.id.button_permissions_ready0).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -63,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
 
     protected void fastRecreate(final long timeDelay) {
