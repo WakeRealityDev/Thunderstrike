@@ -198,6 +198,12 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         remGlkUpdateGeneration = -1;
     }
 
+    /*
+    This is the code to demonstrate how to be a Launcher app and how to start stories in
+      Thunderword from yoour own outside app.
+      This example shows sharing of public files on /sdcard/ path, you will need to download
+      and populate those data files before the app can work.
+     */
     public void launchStoryClick(View view) {
         Log.i("RemoteSimple", "click on launchStoryClick button");
 
@@ -210,6 +216,23 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         //   of additional launch parameters. The name prefix was specifically selected to encourage
         //   the Android development community to use this pattern - and not exclusive to Thunderword.
         intent.setAction("interactivefiction.engine.glulx");
+
+        // If you did want to pick a specific app to execute, be it one from Wake Reality or otherwise:
+        switch (1) {
+            case 1:   // Wake Reality's Thunderword [experimental] app
+                intent.setPackage("com.wakereality.thunderword.experimental");
+                break;
+            case 2:   // Wake Reality's Thunderword app (to be released when mature enough)
+                intent.setPackage("com.wakereality.thunderword");
+                break;
+            case 3:   // Other app
+                intent.setPackage("" /* Other Interactive Fiction app that wants to be engine */);
+                break;
+            case 0:
+            default:
+                // Don't set it, and let the receiving engines decide who responds
+                break;
+        }
 
         // Tell Thunderword to be headless with a value of 0, no screen activity & only RemGlk data exchange.
         // NOTE: For purposes of testing a "launcher app" that is not headless, values of 1 is for
@@ -234,9 +257,17 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 intent.setAction("interactivefiction.engine.zmachine");
                 break;
             case R.id.launchStoryPickDTextView0:
-                // "Head" activity, not "headless" - this is example of launcher app.
+                // With "Head" activity, not "headless" - this is example of launcher app.
                 intent.putExtra("path", "/sdcard/myfiction/CounterfeitMonkey_release6.gblorb");
                 intent.putExtra("activity", 1 /* Bidirectional Scrolling Activity */);
+                break;
+            case R.id.launchStoryPickETextView0:
+                // SHA-256 hash of story data file that Thunderword may or may not know-of in it's
+                //    database of installed/managed games.
+                // In the absence of a "path" Extra, "datapick" will be checked
+                // NOTE that this datapick example has automation in thunderword and will generate
+                //   several actions / stream of JSON in the first 20 or so seconds.
+                intent.putExtra("datapick", "aaff415aeacdf8aa73ee049f7842a609b82306c97c9f07b8e95ce7ab87ea");
                 break;
         }
 
