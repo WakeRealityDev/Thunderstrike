@@ -6,8 +6,8 @@ Intended for Android Studio 2.2.3
 
 Quickstart:
 
-1. Thunderword Experimental should first be installed on your Android device.
-2. Place testing stories in a shared folder like /sdcard/mygames with ADB push or download via web browser. Glulx stories are recommended. The Git interpreter is the default for Glulx data files.
+1. Thunderword Experimental app should first be installed on your Android device.
+2. Place testing stories in a shared folder like /sdcard/myfiction with ADB push or download via web browser. Glulx stories are recommended. The Git interpreter is the default for Glulx data files.
 3. Edit the code in this Thunderstrike project to have the correct paths to your game data files from step 2. Look for the method named launchStoryClick in RemoteSimpleActivity.java
 4. Build and deploy this Thunderstrike app onto your device with Android Studio. If file permissions are correct, a button to open RemoteSimpleActivity should appear.
 5. On the RemoteSimpleActivity there are two green TextView 'buttons' at the top (labeled LaunchA / B), press one to instruct Thunderword to load one of the datafiles you setup in step 2. You can press these buttons at any time to force Thunderword to restart the interpreter (it will end the story and start the story data file provided).
@@ -31,7 +31,7 @@ This is early and rushed, more should be coming in the future. Thank you!
 
 The JSON
 ==========
-The JSON is from a modified version of RemGlk that is inside Thunderword. The modifications are basically { added colors support, Glk style hint tuples on Glk windows, status related to the loading and unloading of the interpreter engine, errors and deubgging output related to incomplete code }. The good news is that the field names and values are the same as the stock RemGlk - so you can use an unmodified version on your desktop system if you wish to work with the output in different ways. More documentation on the additions to the RemGlk JSON data is forthcoming.
+The JSON is from a modified version of RemGlk that is inside Thunderword. The modifications are basically { added colors support, Glk style hint tuples on Glk windows, status related to the loading and unloading of the interpreter engine, errors and debugging output related to incomplete code }. The good news is that the field names and values are the same as the stock RemGlk - so you can use an unmodified version on your desktop system if you wish to work with the output in different ways. More documentation on the additions to the RemGlk JSON data is forthcoming.
 
 The standard RemGlk JSON is documented here:  http://eblong.com/zarf/glk/remglk/docs.html
 
@@ -40,7 +40,7 @@ NOTE: Right now thoe code probably yields no control over the RemGlk INIT to set
 
 Target Audience
 =================
-This is intended for developers who wish to make their own Android presentation layer - bypassing the one built into Thunderword.
+This is intended for intermediate to advanced developers who wish to make their own Android presentation layer - bypassing the one built into Thunderword.
 
 
 License
