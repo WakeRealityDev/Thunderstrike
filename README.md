@@ -53,4 +53,4 @@ Screen Shots
 =================
 Rover's Day Out being played via Thunderstrike's JSON parsing:
 
-![Tablet](/screenshot0/device-2017-02-11-201555.png?raw=true "Rover's Day Out / Tablet")
+![Tablet](/screenshots0/device-2017-02-11-201555.png?raw=true "Rover's Day Out / Tablet")
