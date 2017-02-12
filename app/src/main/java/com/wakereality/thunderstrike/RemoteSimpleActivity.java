@@ -27,10 +27,11 @@ import org.json.JSONObject;
  * (c) Copyright 2017, Stephen A Gutknecht, All Rights Reserved
  *
  * This class is a demonstration of basic Input/Output to Thunderword app using RemGlk JSON
- *   and various engine control BroadcastReceivers.
+ *   and various engine control BroadcastReceivers. Code contributions / documentation work
+ *   are welcome to further the community examples.
  *
  * This is a demonstration app for software developers to make their own client apps to work
- *   in partnership with the main Thunderword app.
+ *   in partnership with the Thunderword app.
  *
  * Note: this source code does not honor line-length limits, reformat if you so desire.
  *
@@ -40,6 +41,9 @@ import org.json.JSONObject;
  * ToDo: #1 add 'clear' TextView buttons to wipe what's on the output for the person using this app.
  * ToDo: #2 the RemGlk JSON for init of screen size and features is not currently under control of the outside app.
  * ToDo: #3 convention for picking a specific favored interpreter for the same type of binary story file, Example: "Git" or "Glulxe" for "Glulx" binaries.
+ * ToDo: #4 convention on parameter to Thunderword regarding prompting user to end running story instead of forcing it closed when launching a new story.
+ *    (Noteworthy that if it is your own app that started the story, you should keep track of if it is running through the provided Engine State codes)
+ * ToDo: #5 convention / example of how to gracefully exit a story (with no start of a new one).
  */
 
 public class RemoteSimpleActivity extends AppCompatActivity {
@@ -139,7 +143,6 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 if (inputForSingleGlkWindow.lineInputMode) {
                     // Strategy for line-only input mode is to stay in activity until [enter] key.
                     if (latestText.toString().endsWith("\n")) {
-                        // RemGlk will not like empty input
                         postRemGlkInputFromPlayerToThunderword(latestText.toString());
                         editable.clear();
                     }

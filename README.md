@@ -10,7 +10,7 @@ Quickstart:
 2. Place testing stories in a shared folder like /sdcard/myfiction with ADB push or download via web browser. Glulx stories are recommended. The Git interpreter is the default for Glulx data files.
 3. Edit the code in this Thunderstrike project to have the correct paths to your game data files from step 2. Look for the method named launchStoryClick in RemoteSimpleActivity.java
 4. Build and deploy this Thunderstrike app onto your device with Android Studio. If file permissions are correct, a button to open RemoteSimpleActivity should appear.
-5. On the RemoteSimpleActivity there are two green TextView 'buttons' at the top (labeled LaunchA / B), press one to instruct Thunderword to load one of the datafiles you setup in step 2. You can press these buttons at any time to force Thunderword to restart the interpreter (it will end the story and start the story data file provided).
+5. On the RemoteSimpleActivity there are green TextView 'buttons' to be clicked at the top (labeled LaunchA / B / etc), press one to instruct Thunderword to load one of the datafiles you setup in step 2. You can press these buttons at any time to force Thunderword to restart the interpreter (it will forcefully end the current story and start the story data file provided).
 6. You should start to get JSON and game story data to appear on your screen shortly after pressing the LaunchA TextView.
 
 This is primitive in user interface and is intended to demonstrate the techniques for interfacing to Thunderword engines via JSON sharing / Broadcasts. What to look for in this source code:
@@ -21,7 +21,7 @@ This is primitive in user interface and is intended to demonstrate the technique
 4. Use of GreenRobot EventBus 3.0 for changing of threads and passing data into the activity (this is not required in any way, but is how this Thunderstrike app was coded). https://github.com/greenrobot/EventBus
 5. Uses only the built-in JSONObject / JSONArray parsing. Your own app could use higher performance libraries if you wish (Android community has several options for JSON processing).
 6. The sample does not process Glk windows, timers, graphics and barely processes input. That's the JSON programming work you would do. Thunderword knows how to do these on it's own, but the whole point of this Thunderstrike app is for you to have the liberty to work with the raw JSON and present it as you see best.
-7. The two stories I tested Thunderstrike with are "Rover's Day Out" and "Counterfeit Monkey", both can be downloaded here: http://ifdb.tads.org/
+7. The couple stories I tested Thunderstrike with are "Rover's Day Out" and "Counterfeit Monkey", both can be downloaded here: http://ifdb.tads.org/
 8. If there are graphics images in the story, the /sdcard/ path filenames will not be correctly - look in the directory that RemGlk says holds the images and you will find them with a different naming convention. Thunderword internally compensates for this, but the shared JSON does not and you will have to adjust.
 9.  ... more tips & observations to come ....
 
