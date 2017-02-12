@@ -11,14 +11,16 @@ Quickstart:
 3. Edit the code in this Thunderstrike project to have the correct paths to your game data files from step 2. Look for the method named launchStoryClick in RemoteSimpleActivity.java
 4. Build and deploy this Thunderstrike app onto your device with Android Studio. If file permissions are correct, a button to open RemoteSimpleActivity should appear.
 5. On the RemoteSimpleActivity there are two green TextView 'buttons' at the top (labeled LaunchA / B), press one to instruct Thunderword to load one of the datafiles you setup in step 2. You can press these buttons at any time to force Thunderword to restart the interpreter (it will end the story and start the story data file provided).
-6. You shold start to get JSON and game story data to appear on your screen shortly after pressing the LaunchA TextView.
+6. You should start to get JSON and game story data to appear on your screen shortly after pressing the LaunchA TextView.
 
-This is primitive in user interface and is intended to demonstrate the techniques for interfacing with Thunderword engines. What to look for in this source code:
+This is primitive in user interface and is intended to demonstrate the techniques for interfacing with Thunderword engines via JSON / Broadcasts. What to look for in this source code:
 
 1. AndroidManifest.xml has the strings you need for broadcast receiving the JSON in your own apps.
 2. The sendBroadcast intent for instructing Thunderword to open your story data file.
 3. The Engine State codes to know if Thunderword has shut down your story
-4.  ... more tips to come ....
+4. Use of GreenRobot EventBus 3.0 for changing of threads and passing data into the activity (this is not required in any way, but is how this Thunderstrike app was coded). https://github.com/greenrobot/EventBus
+5. Uses only the built-in JSONObject / JSONArray parsing. Your own app could use higher performance libraries if you wish (Android community has several options for JSON processing).
+6.  ... more tips & observations to come ....
 
 From here on out, it's up to you how to make best use of the JSON that is being provided to your app.
 
@@ -31,7 +33,7 @@ The JSON is from a modified version of RemGlk that is inside Thunderword. The mo
 
 The standard RemGlk JSON is documented here:  http://eblong.com/zarf/glk/remglk/docs.html
 
-NOTE: Right now thoe code probably yeilds no control over the RemGlk INIT to set the desired screen size emulation of RemGlk - Thunderword is doing that on it's own. Future updates should provide a way to specify those parameters along with the data file.
+NOTE: Right now thoe code probably yields no control over the RemGlk INIT to set the desired screen size emulation of RemGlk - Thunderword is doing that on it's own. Future updates should provide a way to specify those parameters along with the data file.
 
 
 Target Audience
