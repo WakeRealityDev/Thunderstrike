@@ -15,7 +15,7 @@
         android:id="@+id/textView0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello and welcome to Thunderstrike, the RemGlk example app."
+        android:text="Hello and welcome to Wake Reality's Thunderstrike, the RemGlk technical demonstration app to partner with the Thunderword app. Thunderword needs to be installed on the same Android device before attempting to use this app."
         />
 
     <Button
