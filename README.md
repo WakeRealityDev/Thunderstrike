@@ -1,6 +1,6 @@
 Wake Reality's Thunderstrike
 ===============================
-Quick and dirty example app / proof of conept of how to interface RemGlk JSON data exchange with the Thunderword app. It also demonstrates how to specify the data file you want and for Thunderword to launch the story.
+Quick and dirty example app / proof of concept of how to interface RemGlk JSON data exchange with the Thunderword app. It also demonstrates how to specify the data file you want and for Thunderword to launch the story.
 
 Intended for Android Studio 2.2.3
 
@@ -32,6 +32,11 @@ The JSON is from a modified version of RemGlk that is inside Thunderword. The mo
 The standard RemGlk JSON is documented here:  http://eblong.com/zarf/glk/remglk/docs.html
 
 NOTE: Right now thoe code probably yeilds no control over the RemGlk INIT to set the desired screen size emulation of RemGlk - Thunderword is doing that on it's own. Future updates should provide a way to specify those parameters along with the data file.
+
+
+Target Audience
+=================
+This is intended for developers who wish to make their own Android presentation layer - bypassing the one built into Thunderword.
 
 
 License
