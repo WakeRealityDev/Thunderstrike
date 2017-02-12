@@ -31,7 +31,7 @@ This is early and rushed, more should be coming in the future. Thank you!
 
 The JSON
 ==========
-The JSON is from a modified version of RemGlk that is inside Thunderword. The modifications are basically { added colors support, style sheet tuples on Glk windows, status related to the loading and unloading of the interpreter engine, errors and deubgging output related to incomplete code }. The good news is that the field names and values are the same as the stock RemGlk - so you can use an unmodified version on your desktop system if you wish to work wtihotu the output in different ways. More documentation on the additions to the JSON data is forthcoming.
+The JSON is from a modified version of RemGlk that is inside Thunderword. The modifications are basically { added colors support, Glk style hint tuples on Glk windows, status related to the loading and unloading of the interpreter engine, errors and deubgging output related to incomplete code }. The good news is that the field names and values are the same as the stock RemGlk - so you can use an unmodified version on your desktop system if you wish to work with the output in different ways. More documentation on the additions to the RemGlk JSON data is forthcoming.
 
 The standard RemGlk JSON is documented here:  http://eblong.com/zarf/glk/remglk/docs.html
 
