@@ -47,3 +47,10 @@ This is intended for intermediate to advanced developers who wish to make their 
 License
 ==========
 The code in this Thunderstrike project is licensed Apache 2.0 to allow you to easily mix with any of the Android SDK samples provided by Google.
+
+
+Screen Shots
+=================
+Rover's Day Out being played via Thunderstrike's JSON parsing:
+
+![Tablet](/screenshot0/device-2017-02-11-201555.png?raw=true "Rover's Day Out / Tablet")
