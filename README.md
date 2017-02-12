@@ -1,6 +1,6 @@
 Wake Reality's Thunderstrike
 ===============================
-Quick and dirty example app / proof of concept of how to interface RemGlk JSON data exchange with the Thunderword app. It also demonstrates how to specify the data file you want and for Thunderword to launch the story.
+Quick and dirty example app / proof of concept of how to interface RemGlk JSON data exchange with the Thunderword app. It also demonstrates how to specify the data file you want and how to trigger Thunderword to launch the story.
 
 Intended for Android Studio 2.2.3
 
@@ -22,11 +22,12 @@ This is primitive in user interface and is intended to demonstrate the technique
 5. Uses only the built-in JSONObject / JSONArray parsing. Your own app could use higher performance libraries if you wish (Android community has several options for JSON processing).
 6. The sample does not process Glk windows, timers, graphics and barely processes input. That's the JSON programming work you would do. Thunderword knows how to do these on it's own, but the whole point of this Thunderstrike app is for you to have the liberty to work with the raw JSON and present it as you see best.
 7. The two stories I tested Thunderstrike with are "Rover's Day Out" and "Counterfeit Monkey", both can be downloaded here: http://ifdb.tads.org/
-8.  ... more tips & observations to come ....
+8. If there are graphics images in the story, the /sdcard/ path filenames will not be correctly - look in the directory that RemGlk says holds the images and you will find them with a different naming convention. Thunderword internally compensates for this, but the shared JSON does not and you will have to adjust.
+9.  ... more tips & observations to come ....
 
 From here on out, it's up to you how to make best use of the JSON that is being provided to your app.
 
-This is early and rushed, more should be coming in the future. Thank you!
+This is early and rushed, more should be coming in the future. Your sample code contributions are welcome! Thank you!
 
 
 The JSON
