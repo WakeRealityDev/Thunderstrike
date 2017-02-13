@@ -20,9 +20,9 @@ This is primitive in user interface and is intended to demonstrate the technique
 3. The Engine State codes to know if Thunderword has shut down your story
 4. Use of GreenRobot EventBus 3.0 for changing of threads and passing data into the activity (this is not required in any way, but is how this Thunderstrike app was coded). https://github.com/greenrobot/EventBus
 5. Uses only the built-in JSONObject / JSONArray parsing. Your own app could use higher performance libraries if you wish (Android community has several options for JSON processing).
-6. The sample does not process Glk windows, timers, graphics and barely processes input. That's the JSON programming work you would do. Thunderword knows how to do these on it's own, but the whole point of this Thunderstrike app is for you to have the liberty to work with the raw JSON and present it as you see best.
-7. The couple stories I tested Thunderstrike with are "Rover's Day Out" and "Counterfeit Monkey", both can be downloaded here: http://ifdb.tads.org/
-8. If there are graphics images in the story, the /sdcard/ path filenames will not be correctly - look in the directory that RemGlk says holds the images and you will find them with a different naming convention. Thunderword internally compensates for this, but the shared JSON does not and you will have to adjust.
+6. The sample code does not process Glk windows, timers, graphics and barely processes input. That's the JSON programming work you would do. Thunderword knows how to do these on it's own, but the whole point of this Thunderstrike app is for you to have the liberty to work with the raw JSON and present it as you see best.
+7. The couple of stories I tested Thunderstrike with are "Rover's Day Out" and "Counterfeit Monkey", both can be downloaded here: http://ifdb.tads.org
+8. If there are graphics images in the story, the /sdcard/ path filenames in the JSON will not be correct - look in the directory that RemGlk says holds the images and you will find them with a different naming convention. Thunderword internally compensates for this filename difference, but the shared JSON does not and you will have to adjust.
 9.  ... more tips & observations to come ....
 
 From here on out, it's up to you how to make best use of the JSON that is being provided to your app.
@@ -32,11 +32,11 @@ This is early and rushed, more should be coming in the future. Your sample code 
 
 The JSON
 ==========
-The JSON is from a modified version of RemGlk that is inside Thunderword. The modifications are basically { added colors support, Glk style hint tuples on Glk windows, status related to the loading and unloading of the interpreter engine, errors and debugging output related to incomplete code }. The good news is that the field names and values are the same as the stock RemGlk - so you can use an unmodified version on your desktop system if you wish to work with the output in different ways. More documentation on the additions to the RemGlk JSON data is forthcoming.
+The JSON is from an enhanced version of RemGlk that is inside Thunderword. The modifications are basically { added colors support, Glk style hint tuples on Glk windows, status related to the loading and unloading of the interpreter engine, errors and debugging output related to incomplete code }. The good news is that the field names and values are the same as the stock RemGlk - so you can use an unmodified version on your desktop system if you wish to work with the output in different ways. More documentation on the additions to the RemGlk JSON data is forthcoming.
 
 The standard RemGlk JSON is documented here:  http://eblong.com/zarf/glk/remglk/docs.html
 
-NOTE: Right now the code probably yields no control over the RemGlk INIT to set the desired screen size emulation of RemGlk - Thunderword is doing that on it's own. Future updates should provide a way to specify those parameters along with the data file.
+NOTE: Right now the Thunderword code probably yields no control over the RemGlk INIT to set the desired screen size emulation of RemGlk - Thunderword is doing that on it's own. Future updates should provide a way to specify those parameters along with the data file.
 
 
 Target Audience
@@ -51,6 +51,6 @@ The code in this Thunderstrike project is licensed Apache 2.0 to allow you to ea
 
 Screen Shots
 =================
-Rover's Day Out being played via Thunderstrike's JSON parsing:
+Rover's Day Out being played via Thunderstrike's app to app JSON parsing:
 
 ![Tablet](/screenshots0/device-2017-02-11-201555.png?raw=true "Rover's Day Out / Tablet")

@@ -79,7 +79,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         JSONObject tempJSONObject = new JSONObject();
         int thisGen = inputForSingleGlkWindow.gen;
         try {
-            // Tip: RemGlk documentation describes these fields and their format
+            // Tip: RemGlk documentation describes these fields and their format.
             tempJSONObject.put("type",   (inputForSingleGlkWindow.lineInputMode) ? "line" : "char");
             tempJSONObject.put("gen",    thisGen);
             tempJSONObject.put("window", inputForSingleGlkWindow.windowId);
@@ -113,7 +113,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 EventBus.getDefault().register(this);
             }
             onCreateLayoutSpecific();
-            // Setup a local sender for player input to Thunderword app
+            // Setup a local sender for player input to Thunderword app.
             inputSender = new RemGlkInputSender(getApplicationContext());
         } catch (Exception e) {
             Log.e("RemoteSimple", "[activityPrep][storyActivity][startActivity] Exception in onCreate", e);
@@ -192,19 +192,19 @@ public class RemoteSimpleActivity extends AppCompatActivity {
     }
 
     public void setupForNewStoryIncoming() {
-        // clear output on screen
+        // clear output on screen.
         storyOutputRawTextView0.setText("");
         remGlkInfoOutputTextView0.setText("");
-        // Reset input generation
+        // Reset input generation.
         inputLastGenSend = -1;
         remGlkUpdateGeneration = -1;
     }
 
     /*
     This is the code to demonstrate how to be a Launcher app and how to start stories in
-      Thunderword from yoour own outside app.
+      Thunderword from your own outside app.
       This example shows sharing of public files on /sdcard/ path, you will need to download
-      and populate those data files before the app can work.
+      and populate those data files before this app can work.
      */
     public void launchStoryClick(View view) {
         Log.i("RemoteSimple", "click on launchStoryClick button");
@@ -242,10 +242,15 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         //    Layout choices and preferences are still work-in-progress areas of Thunderword.
         intent.putExtra("activity", 0);
 
-        // Readable/publicly accessible Data file for the story to launch.
+        // Readable/publicly accessible data file for the story to launch.
         // Future: Alternately, your app can be content provider for secure exchange of data file.
         //    Thunderword already has code to take files from content providers from the Android
         //    download manager. What's left to do is to establish a convention for peer apps.
+        // "/sdcard/" path is part of why this sample code is described as "quick and dirty", it makes
+        //   for a faster tutorial if you have a modern Android 5.1 and newer device. However,
+        //   Google seems to want app to app exchange to use content providers.
+        // For content provider libraries, I suggest https://github.com/commonsguy/cwac-provider
+        //   Your source code contribution to this Thunderstrike samples are welcome!
         switch (view.getId()) {
             case R.id.launchStoryPickATextView0:
                 intent.putExtra("path", "/sdcard/myfiction/rover.gblorb");
@@ -278,7 +283,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 break;
         }
 
-        // ToDo: A wise app would check that the file exists before blindly sending it over to Thunderword
+        // ToDo: A wise app would check that the data file exists before blindly sending it over to Thunderword.
 
         sendBroadcast(intent);
     }
@@ -305,7 +310,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 for (int topContentArrayIndex = 0; topContentArrayIndex < storyContentArray.length(); topContentArrayIndex++) {
                     JSONObject contentEntry = storyContentArray.getJSONObject(topContentArrayIndex);
                     Log.d("RemoteSimple", "contentEntry " + contentEntry.toString());
-                    // sample from story Counterfeit Monkey version 6:
+                    // Sample JSON from story Counterfeit Monkey version 6:
                     // {"id":24,"clear":true,"text":[{"append":true},{},{},{"content":[{"style":"normal","text":"Can you hear me? >> "}]}]}
                     if (contentEntry.has("clear")) {
                         if (contentEntry.getBoolean("clear")) {
@@ -331,7 +336,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                                 }
 
                             }
-                            // Blank lines, blank paragraphs. See above "sample from story Counterfeit Monkey" JSON.
+                            // Blank lines, blank paragraphs. See above "sample JSON from story Counterfeit Monkey".
                             if (windowContentTextParagraph.toString().equals("{}"))
                             {
                                 storyOutputRawTextView0.append("\n");
@@ -339,6 +344,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                             if (windowContentTextParagraph.has("append"))
                             {
                                 if (windowContentTextParagraph.getBoolean("append")) {
+                                    // ToDo: value goes unchecked, the formating behavior / feature isn't implemented
                                     appendMode = true;
                                 }
                             }
@@ -352,13 +358,10 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 for (int inputArrayIndex = 0; inputArrayIndex < storyInputArray.length(); inputArrayIndex++) {
                     JSONObject inputEntry = storyInputArray.getJSONObject(inputArrayIndex);
                     Log.d("RemoteSimple", "inputEntry " + inputEntry.toString());
-                    // sample from story Counterfeit Monkey version 6:
+                    // Sample JSON from story Counterfeit Monkey version 6:
                     // {"id":24,"gen":1,"type":"line","maxlen":256}
                     if (inputEntry.has("type")) {
-                        inputForSingleGlkWindow.lineInputMode = false;
-                        if (inputEntry.getString("type").equals("line")) {
-                            inputForSingleGlkWindow.lineInputMode = true;
-                        }
+                        inputForSingleGlkWindow.lineInputMode = inputEntry.getString("type").equals("line");
                         if (inputEntry.has("gen")) {
                             inputForSingleGlkWindow.gen = inputEntry.getInt("gen");
                         }
@@ -453,7 +456,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                     // printJsonObject(incomingRemGlkStanza);
                     primitiveProcessingRemGlkStanza(incomingRemGlkStanza);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.w("RemoteSimple", "Error processing JSON from raw RemGlk input source", e);
                 }
                 break;
         }
