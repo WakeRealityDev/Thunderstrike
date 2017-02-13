@@ -1,4 +1,4 @@
-package com.wakereality.thunderstrike;
+package com.wakereality.thunderstrike.sendreceive;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

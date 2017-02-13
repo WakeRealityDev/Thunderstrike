@@ -1,4 +1,4 @@
-package com.wakereality.thunderstrike;
+package com.wakereality.thunderstrike.sendreceive;
 
 import android.content.Context;
 import android.content.Intent;

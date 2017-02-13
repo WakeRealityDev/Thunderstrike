@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.wakereality.thunderstrike.storypresentation.RemoteSimpleActivity;
+
 /*
 There is nothing of learning importance on this page. It merely checks that external (/sdcard/) file
   permissions are granted and offers a choice of which activity to open.

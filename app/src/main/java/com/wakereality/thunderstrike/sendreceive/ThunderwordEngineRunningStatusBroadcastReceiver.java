@@ -1,4 +1,4 @@
-package com.wakereality.thunderstrike;
+package com.wakereality.thunderstrike.sendreceive;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,7 +16,7 @@ public class ThunderwordEngineRunningStatusBroadcastReceiver extends BroadcastRe
     @Override
     public void onReceive(Context context, Intent intent) {
         int stateCode = intent.getIntExtra("stateCode", -1);
-        if (stateCode != -1l) {
+        if (stateCode != -1) {
             int index = intent.getIntExtra("index", -1);
             boolean clearIfPresent = intent.getBooleanExtra("clearIfPresent", false);
             Log.v("EngineRunStatus", "[ThunderClap][shareRemGlk] #" + index + " stateCode " + stateCode + " clearIfPresent " + clearIfPresent);

@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.wakereality.thunderstrike.RemoteSimpleActivity">
+    tools:context="com.wakereality.thunderstrike.storypresentation.RemoteSimpleActivity">
 
     <!--
     Makes no effort to deal with overflow.

@@ -1,4 +1,4 @@
-package com.wakereality.thunderstrike;
+package com.wakereality.thunderstrike.storypresentation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.wakereality.thunderstrike.R;
+import com.wakereality.thunderstrike.sendreceive.RemGlkInputSender;
 import com.wakereality.thunderstrike.dataexchange.EventEngineRunningStatus;
 import com.wakereality.thunderstrike.dataexchange.EventIncomingRemGlkPayload;
 import com.wakereality.thunderstrike.dataexchange.PayloadToEngine;
