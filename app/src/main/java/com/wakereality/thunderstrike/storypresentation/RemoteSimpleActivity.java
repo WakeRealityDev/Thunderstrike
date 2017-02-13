@@ -263,6 +263,11 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 intent.putExtra("path", "/sdcard/myfiction/TheEmptyRoom.zblorb");
                 intent.setAction("interactivefiction.engine.zmachine");
                 break;
+            case 1999999:
+                // If you want to help test Thunderword, you could try data files for TADS2 / TADS3 / scott interpreter engines.
+                intent.setAction("interactivefiction.engine.TADS");
+                intent.setAction("interactivefiction.engine.ScottAdams");
+                break;
             case R.id.launchStoryPickDTextView0:
                 // With "Head" activity, not "headless" - this is example of launcher app.
                 intent.putExtra("path", "/sdcard/myfiction/CounterfeitMonkey_release6.gblorb");
@@ -406,6 +411,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                     case "remglk_debug":
                     case "EngineError":
                     case "blorberror":
+                    case "debug_zcolors":
                         remGlkInfoOutputTextView0.append(jsonStanza.toString() + "\n");
                         break;
                     default:
