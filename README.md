@@ -2,7 +2,7 @@ Wake Reality's Thunderstrike
 ===============================
 Quick and dirty example app / proof of concept of how to interface RemGlk JSON data exchange with the Thunderword app. It also demonstrates how to specify the data file you want and how to trigger Thunderword to launch the story.
 
-Intended for Android Studio 2.2.3
+Intended for Android Studio 2.2.3.  Android 5.1 and newer devices should be used at this point in testing.
 
 Quickstart:
 
