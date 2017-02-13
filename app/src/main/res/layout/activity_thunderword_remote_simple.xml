@@ -24,7 +24,7 @@
             android:id="@+id/topStatusTextView0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello and welcome to Thunderclap, the RemGlk example app."
+            android:text="Hello and welcome to Thunderstrike, the RemGlk example app for Thunderword."
             />
         <TextView
             android:id="@+id/launchStoryPickATextView0"
