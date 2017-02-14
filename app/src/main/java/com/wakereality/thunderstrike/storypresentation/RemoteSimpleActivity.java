@@ -286,6 +286,11 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 // NOTE: hash is case sensitive, all lowercase
                 intent.putExtra("datapick", "aaff415aeacdf8aa73ee049f7842a609b82306c97c9f07b8e95ce7ab87ea");
                 break;
+            case R.id.launchStoryPickFTextView0:
+                // All Things Devours R3 .z5
+                intent.putExtra("datapick", "a0b0569c2f57a975f868242b9a1dfe40a75e6aef92d5480eb51c81a3150eb37");
+                intent.setAction("interactivefiction.engine.zmachine");
+                break;
         }
 
         // ToDo: A wise app would check that the data file exists before blindly sending it over to Thunderword.
