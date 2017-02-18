@@ -238,7 +238,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
 
         // Tell Thunderword to be headless with a value of 0, no screen activity & only RemGlk data exchange.
         // NOTE: For purposes of testing a "launcher app" that is not headless, values of 1 is for
-        //    the Bidirectional Scrolling activity, 2 is Standard scrolling Activity.
+        //    the Bidirectional Scrolling activity, 2 is Standard scrolling Activity, 3 is TwoWindow activity
         //    Layout choices and preferences are still work-in-progress areas of Thunderword.
         intent.putExtra("activity", 0);
 
@@ -290,6 +290,11 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 // All Things Devours R3 .z5
                 intent.putExtra("datapick", "a0b0569c2f57a975f868242b9a1dfe40a75e6aef92d5480eb51c81a3150eb37");
                 intent.setAction("interactivefiction.engine.zmachine");
+                break;
+            case R.id.launchStoryPickGTextView0:
+                // Level 9 / V4 / Red Moon (second part of Time and Magik)
+                intent.putExtra("path", "/sdcard/myfiction/REDMOON.SNA");
+                intent.setAction("interactivefiction.engine.level9");
                 break;
         }
 

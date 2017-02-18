@@ -92,6 +92,17 @@
             android:layout_alignBaseline="@id/topStatusTextView0"
             android:background="#00FF00"
             />
+        <TextView
+            android:id="@+id/launchStoryPickGTextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[G]"
+            android:layout_marginLeft="4dp"
+            android:onClick="launchStoryClick"
+            android:layout_toRightOf="@id/launchStoryPickFTextView0"
+            android:layout_alignBaseline="@id/topStatusTextView0"
+            android:background="#00FF00"
+            />
     </RelativeLayout>
 
     <RelativeLayout
