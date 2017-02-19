@@ -115,6 +115,8 @@ public class RemoteSimpleActivity extends AppCompatActivity {
             onCreateLayoutSpecific();
             // Setup a local sender for player input to Thunderword app.
             inputSender = new RemGlkInputSender(getApplicationContext());
+            // Test that Thunderword app is installed and has desired engines available.
+            queryRemoteStoryEngineProviders();
         } catch (Exception e) {
             Log.e("RemoteSimple", "[activityPrep][storyActivity][startActivity] Exception in onCreate", e);
         }
@@ -200,11 +202,22 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         remGlkUpdateGeneration = -1;
     }
 
+    public void queryRemoteStoryEngineProviders() {
+        Intent intent = new Intent();
+        // Tell Android to start Thunderword app if not already running.
+        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        intent.setAction("interactivefiction.enginemeta.runstory");
+        getApplicationContext().sendBroadcast(intent);
+    }
+
     /*
     This is the code to demonstrate how to be a Launcher app and how to start stories in
       Thunderword from your own outside app.
       This example shows sharing of public files on /sdcard/ path, you will need to download
       and populate those data files before this app can work.
+
+      "interactivefiction.enginemeta.runstory" is also a listening broadcast that will return
+        broadcast of engines via "interactivefiction.enginemeta.storyengines"
      */
     public void launchStoryClick(View view) {
         Log.i("RemoteSimple", "click on launchStoryClick button");

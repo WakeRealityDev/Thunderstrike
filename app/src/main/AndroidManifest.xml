@@ -35,6 +35,13 @@
             </intent-filter>
         </receiver>
 
+        <!--  Selected naming convention is general-purpose and other apps could use it -->
+        <receiver android:name=".sendreceive.InteractiveFictionEnginesMetaBroadcastReceiver">
+            <intent-filter>
+                <action android:name="interactivefiction.enginemeta.storyengines" />
+            </intent-filter>
+        </receiver>
+
         <!-- to allow preference selection of Production app vs. Experimental, listen to both -->
         <receiver android:name=".sendreceive.ThunderwordEngineRunningStatusBroadcastReceiver">
             <intent-filter>
