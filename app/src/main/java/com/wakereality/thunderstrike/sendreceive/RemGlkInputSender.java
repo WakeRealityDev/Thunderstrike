@@ -29,7 +29,8 @@ public class RemGlkInputSender {
     public void onEvent(PayloadToEngine event) {
         Intent update = new Intent(broadcastTarget);
         update.putExtra("payload", event.payload);
-        Log.v("GlkInputSender", "[dataToEngine] send: " + event.payload);
+        update.putExtra("use", event.useIndicator);
+        Log.v("GlkInputSender", "[dataToEngine] send: " + event.payload.replace("\n", "~~CR~~") + "' useIndicator " + event.useIndicator);
         appContext.sendBroadcast(update);
     }
 }

@@ -4,9 +4,11 @@ package com.wakereality.thunderstrike.dataexchange;
  */
 
 public class PayloadToEngine {
-    public String payload = "";
+    final public String payload;
+    final public int useIndicator;
 
-    public PayloadToEngine(String payloadData) {
+    public PayloadToEngine(String payloadData, int payloadUseIndicatorCode) {
         payload = payloadData;
+        useIndicator = payloadUseIndicatorCode;
     }
 }

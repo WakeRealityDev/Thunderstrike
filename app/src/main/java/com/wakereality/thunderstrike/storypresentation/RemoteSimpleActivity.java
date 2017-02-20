@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.wakereality.thunderstrike.R;
+import com.wakereality.thunderstrike.dataexchange.EngineConst;
 import com.wakereality.thunderstrike.sendreceive.RemGlkInputSender;
 import com.wakereality.thunderstrike.dataexchange.EventEngineRunningStatus;
 import com.wakereality.thunderstrike.dataexchange.EventIncomingRemGlkPayload;
@@ -97,7 +98,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
             Log.w("RemoteSimple", "[dataToEngine] DUPLICATE_SEND_FAILURE, skip");
         } else {
             inputLastGenSend = thisGen;
-            PayloadToEngine eventPayloadToEngine = new PayloadToEngine(tempJSONObject.toString());
+            PayloadToEngine eventPayloadToEngine = new PayloadToEngine(tempJSONObject.toString(), EngineConst.PAYLOAD_TO_ENGINE_USE_GENERAL_PURPOSE);
             Log.i("RemoteSimple", "[dataToEngine] " + eventPayloadToEngine.payload);
             EventBus.getDefault().post(eventPayloadToEngine);
         }
