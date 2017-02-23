@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.wakereality.thunderstrike.BuildConfig;
 import com.wakereality.thunderstrike.R;
 import com.wakereality.thunderstrike.dataexchange.EngineConst;
 import com.wakereality.thunderstrike.sendreceive.RemGlkInputSender;
@@ -24,6 +25,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Apache 2.0 license on this source file
@@ -211,6 +215,8 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         getApplicationContext().sendBroadcast(intent);
     }
 
+    protected static AtomicInteger launchToken = new AtomicInteger(0);
+
     /*
     This is the code to demonstrate how to be a Launcher app and how to start stories in
       Thunderword from your own outside app.
@@ -221,6 +227,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         broadcast of engines via "interactivefiction.enginemeta.storyengines"
      */
     public void launchStoryClick(View view) {
+        int myLaunchToken = launchToken.incrementAndGet();
         Log.i("RemoteSimple", "click on launchStoryClick button");
 
         setupForNewStoryIncoming();
@@ -228,6 +235,8 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         Intent intent = new Intent();
         // Tell Android to start Thunderword app if not already running.
         intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        // Inform the Engine Provider who to call back.
+        intent.putExtra("sender", BuildConfig.APPLICATION_ID);
         // Tell Thunderword Glulx story data file, it will pick default engine in absence
         //   of additional launch parameters. The name prefix was specifically selected to encourage
         //   the Android development community to use this pattern - and not exclusive to Thunderword.
@@ -255,6 +264,8 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         //    the Bidirectional Scrolling activity, 2 is Standard scrolling Activity, 3 is TwoWindow activity
         //    Layout choices and preferences are still work-in-progress areas of Thunderword.
         intent.putExtra("activity", 0);
+
+        intent.putExtra("launchtoken", "A" + myLaunchToken);
 
         // Readable/publicly accessible data file for the story to launch.
         // Future: Alternately, your app can be content provider for secure exchange of data file.
