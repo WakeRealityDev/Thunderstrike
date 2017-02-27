@@ -263,9 +263,12 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         // NOTE: For purposes of testing a "launcher app" that is not headless, values of 1 is for
         //    the Bidirectional Scrolling activity, 2 is Standard scrolling Activity, 3 is TwoWindow activity
         //    Layout choices and preferences are still work-in-progress areas of Thunderword.
-        intent.putExtra("activity", 0);
+        intent.putExtra("activitycode", 0);
 
         intent.putExtra("launchtoken", "A" + myLaunchToken);
+
+        // Tell Thunderword to not show Toast messages if data file is missing and on headless launch.
+        // intent.putExtra("silent", true);
 
         // Readable/publicly accessible data file for the story to launch.
         // Future: Alternately, your app can be content provider for secure exchange of data file.
@@ -296,7 +299,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
             case R.id.launchStoryPickDTextView0:
                 // With "Head" activity, not "headless" - this is example of launcher app.
                 intent.putExtra("path", "/sdcard/myfiction/CounterfeitMonkey_release6.gblorb");
-                intent.putExtra("activity", 1 /* Bidirectional Scrolling Activity */);
+                intent.putExtra("activitycode", 1 /* Bidirectional Scrolling Activity */);
                 break;
             case R.id.launchStoryPickETextView0:
                 // SHA-256 hash of story data file that Thunderword may or may not know-of in it's
