@@ -1,6 +1,13 @@
+Partner Apps / Other Examples
+================================
+In addition to this Thunderstrike example project, the open source interpreter app Incant has been enhanced by Wake Reality and published here: https://github.com/WakeRealityDev/Incant
+
+"Incant! for Thunderword" serves as an open-source example of code that can download Interactive Fiction stories over the Internet and launch them with the Thunderword app engines.
+
+
 Wake Reality's Thunderstrike
 ===============================
-Quick and dirty example app / proof of concept of how to interface RemGlk JSON data exchange with the Thunderword app. It also demonstrates how to specify the data file you want and how to trigger Thunderword to launch the story.
+Thunderstrike is a quick and dirty example app / proof of concept of how to interface RemGlk JSON data exchange with the Thunderword app. It also demonstrates how to specify the data file you want and how to trigger Thunderword to launch the story.
 
 Intended for Android Studio 2.2.3.  Android 5.1 and newer devices should be used at this point in testing.
 
@@ -9,9 +16,9 @@ Quickstart:
 1. Thunderword Experimental app should first be installed on your Android device.
 2. Place testing stories in a shared folder like /sdcard/myfiction with ADB push or download via web browser. Glulx stories are recommended. The Git interpreter is the default for Glulx data files.
 3. Edit the code in this Thunderstrike project to have the correct paths to your game data files from step 2. Look for the method named launchStoryClick in RemoteSimpleActivity.java
-4. Build and deploy this Thunderstrike app onto your device with Android Studio. If file permissions are correct, a button to open RemoteSimpleActivity should appear.
+4. Build and deploy this Thunderstrike app onto your device with Android Studio. If file permissions are correct and Thunderword app is detected, a message should appear on screen and a button to open RemoteSimpleActivity should appear.
 5. On the RemoteSimpleActivity there are green TextView 'buttons' to be clicked at the top (labeled LaunchA / B / etc), press one to instruct Thunderword to load one of the datafiles you setup in step 2. You can press these buttons at any time to force Thunderword to restart the interpreter (it will forcefully end the current story and start the story data file provided).
-6. You should start to get JSON and game story data to appear on your screen shortly after pressing the LaunchA TextView.
+6. You should start to get JSON and game story data to appear on your screen shortly after pressing the LaunchA TextView. If you forget steap #2 (installing data files), you can use the E and F TextView 'buttons' for stories built into the Thunderword app.
 
 This is primitive in user interface and is intended to demonstrate the techniques for interfacing to Thunderword engines via JSON sharing / Broadcasts. What to look for in this source code:
 
@@ -51,6 +58,6 @@ The code in this Thunderstrike project is licensed Apache 2.0 to allow you to ea
 
 Screen Shots
 =================
-Rover's Day Out being played via Thunderstrike's app to app JSON parsing:
+All Things Devours (public domain interactive fiction story) being played via Thunderword & Thunderstrike's app to app JSON sharing:
 
-![Tablet](/screenshots0/device-2017-02-11-201555.png?raw=true "Rover's Day Out / Tablet")
+![Tablet](/screenshots0/device-2017-02-28-093511.png?raw=true "All Things Devours (public domain) running via Thunderstrike / Tablet")
