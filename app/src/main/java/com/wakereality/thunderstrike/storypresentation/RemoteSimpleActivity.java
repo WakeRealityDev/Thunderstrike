@@ -1,6 +1,7 @@
 package com.wakereality.thunderstrike.storypresentation;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -226,9 +227,18 @@ public class RemoteSimpleActivity extends AppCompatActivity {
       "interactivefiction.enginemeta.runstory" is also a listening broadcast that will return
         broadcast of engines via "interactivefiction.enginemeta.storyengines"
      */
-    public void launchStoryClick(View view) {
+    public void launchStoryClick(final View view) {
         int myLaunchToken = launchToken.incrementAndGet();
         Log.i("RemoteSimple", "click on launchStoryClick button, launchToken" + myLaunchToken);
+
+        // Poor man's animation to show visual feedback of click.
+        view.setBackgroundColor(Color.parseColor("#FF8A65"));
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setBackgroundColor(Color.parseColor("#00FF00"));
+            }
+        }, 2200L);
 
         setupForNewStoryIncoming();
 

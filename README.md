@@ -1,6 +1,6 @@
 Partner Apps / Other Examples
 ================================
-In addition to this Thunderstrike example project, the open source interpreter app Incant has been enhanced by Wake Reality and published here: https://github.com/WakeRealityDev/Incant
+SEE ALSO: In addition to this Thunderstrike example project, the open source interpreter app Incant has been enhanced by Wake Reality and published here: https://github.com/WakeRealityDev/Incant
 
 "Incant! for Thunderword" serves as an open-source example of code that can download Interactive Fiction stories over the Internet and launch them with the Thunderword app engines.
 
@@ -18,7 +18,7 @@ Quickstart:
 3. Edit the code in this Thunderstrike project to have the correct paths to your game data files from step 2. Look for the method named launchStoryClick in RemoteSimpleActivity.java
 4. Build and deploy this Thunderstrike app onto your device with Android Studio. If file permissions are correct and Thunderword app is detected, a message should appear on screen and a button to open RemoteSimpleActivity should appear.
 5. On the RemoteSimpleActivity there are green TextView 'buttons' to be clicked at the top (labeled LaunchA / B / etc), press one to instruct Thunderword to load one of the datafiles you setup in step 2. You can press these buttons at any time to force Thunderword to restart the interpreter (it will forcefully end the current story and start the story data file provided).
-6. You should start to get JSON and game story data to appear on your screen shortly after pressing the LaunchA TextView. If you forget steap #2 (installing data files), you can use the E and F TextView 'buttons' for stories built into the Thunderword app.
+6. You should start to get JSON and game story data to appear on your screen shortly after pressing the LaunchA TextView. If you forget step #2 and #3 (installing story data files), you can use the E and F TextView 'buttons' for stories built into the Thunderword app.
 
 This is primitive in user interface and is intended to demonstrate the techniques for interfacing to Thunderword engines via JSON sharing / Broadcasts. What to look for in this source code:
 
