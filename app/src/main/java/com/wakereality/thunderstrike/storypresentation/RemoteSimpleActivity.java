@@ -228,7 +228,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
      */
     public void launchStoryClick(View view) {
         int myLaunchToken = launchToken.incrementAndGet();
-        Log.i("RemoteSimple", "click on launchStoryClick button");
+        Log.i("RemoteSimple", "click on launchStoryClick button, launchToken" + myLaunchToken);
 
         setupForNewStoryIncoming();
 
@@ -269,6 +269,8 @@ public class RemoteSimpleActivity extends AppCompatActivity {
 
         // Tell Thunderword to not show Toast messages if data file is missing and on headless launch.
         // intent.putExtra("silent", true);
+        // Tell Thunderword to not interrupt the running story automatically and prompt the player.
+        // intent.putExtra("interrupt", false);
 
         // Readable/publicly accessible data file for the story to launch.
         // Future: Alternately, your app can be content provider for secure exchange of data file.

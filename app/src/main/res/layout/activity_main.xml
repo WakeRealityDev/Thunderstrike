@@ -55,13 +55,23 @@
         android:layout_below="@+id/message_file_permissions_need0"
         />
 
+    <TextView
+        android:id="@+id/externalEngineStatus0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Interactive Fiction engine provider not found. Is the Thunderword app installed?"
+        android:textColor="#00A000"
+        android:padding="4dp"
+        android:layout_below="@+id/message_file_permissions_ready0"
+        />
+
     <Button
         android:id="@+id/button_permissions_ready0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go!"
         android:visibility="gone"
-        android:layout_below="@+id/message_file_permissions_ready0"
+        android:layout_below="@+id/externalEngineStatus0"
         />
 
 </RelativeLayout>
