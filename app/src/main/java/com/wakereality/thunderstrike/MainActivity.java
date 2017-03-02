@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.wakereality.thunderstrike.dataexchange.EventEngineProviderChange;
 import com.wakereality.thunderstrike.storypresentation.RemoteSimpleActivity;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -36,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        queryEngineProviders();
-
         setContentView(R.layout.activity_main);
 
         rootView = findViewById(R.id.activity_main);
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         checkIfPermissionsReady();
     }
 
-    public void queryEngineProviders() {
+    public void queryRemoteStoryEngineProviders() {
         // Query for Interactive Fiction engine providers.
         Intent intent = new Intent();
         // Tell Android to start Thunderword app if not already running.
@@ -152,6 +151,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Try to be ready for events incoming before triggering any remote Thunderword activity.
+        if (! EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+
+        queryRemoteStoryEngineProviders();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
 
@@ -173,10 +192,8 @@ public class MainActivity extends AppCompatActivity {
     @SuppressWarnings("unused")
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(EventEngineProviderChange event) {
-        /// recreate to ensure that the LibraryAdapter points correctly.
-        // checkEngineProvider();
-        Log.i("MainActivity", "EventEngineProviderChange, issuing recreate()");
-        recreate();
+        Log.i("MainActivity", "EventEngineProviderChange, updating checkEngineProvider()");
+        checkEngineProvider();
     }
 
 }
