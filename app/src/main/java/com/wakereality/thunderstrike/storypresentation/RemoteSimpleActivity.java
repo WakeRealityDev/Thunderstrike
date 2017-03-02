@@ -336,6 +336,26 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 intent.putExtra("path", "/sdcard/myfiction/REDMOON.SNA");
                 intent.setAction("interactivefiction.engine.level9");
                 break;
+            case R.id.launchStoryPickHTextView0:
+                // SpirI7wrak.gblorb
+                intent.putExtra("datapick", "211219d6f09d7f591f3c95e624753b3519f5d958e84f07aa59b55557d74cd649");
+                break;
+            case R.id.launchStoryPickITextView0:
+                // Fate.z8
+                intent.putExtra("datapick", "c11b4cd1ce9d709bea66a33d135b13e8a8937c2a05aa95c07601d083c912ae4c");
+                break;
+            case R.id.launchStoryPickJTextView0:
+                // glkchess.gblorb
+                intent.putExtra("datapick", "fad3b3342f8ee93808b284b9e72e5ffcfe443e5d4051c3b02ffe6721664da661");
+                break;
+            case R.id.launchStoryPickKTextView0:
+                // baron_DU.z8
+                intent.putExtra("datapick", "3e4d906015d9b787702033662f21fc7bddcbd64959c10b50cdd458fe53359a10");
+                break;
+            case R.id.launchStoryPickLTextView0:
+                // baron_EN.z8
+                intent.putExtra("datapick", "6c23fc11932eebb04fa9983ecf54e1062d5bd0ed50fc5923e35e471d9be158e7");
+                break;
         }
 
         // ToDo: A wise app would check that the data file exists before blindly sending it over to Thunderword.

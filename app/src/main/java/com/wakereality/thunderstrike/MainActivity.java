@@ -35,20 +35,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        // Query for Interactive Fiction engine providers.
-        Intent intent = new Intent();
-        // Tell Android to start Thunderword app if not already running.
-        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-        intent.setAction("interactivefiction.enginemeta.runstory");
-        getApplicationContext().sendBroadcast(intent);
+        queryEngineProviders();
+
+        setContentView(R.layout.activity_main);
 
         rootView = findViewById(R.id.activity_main);
 
         permissionCheck();
         checkIfPermissionsReady();
     }
+
+    public void queryEngineProviders() {
+        // Query for Interactive Fiction engine providers.
+        Intent intent = new Intent();
+        // Tell Android to start Thunderword app if not already running.
+        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        intent.setAction("interactivefiction.enginemeta.runstory");
+        getApplicationContext().sendBroadcast(intent);
+    }
+
 
     public void launchClick(View view) {
         Activity parentActivity = this;
