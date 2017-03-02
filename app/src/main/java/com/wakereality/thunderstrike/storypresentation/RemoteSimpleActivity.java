@@ -356,6 +356,10 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 // baron_EN.z8
                 intent.putExtra("datapick", "6c23fc11932eebb04fa9983ecf54e1062d5bd0ed50fc5923e35e471d9be158e7");
                 break;
+            case R.id.launchStoryPickMTextView0:
+                // luna.gblorb
+                intent.putExtra("datapick", "9e2e2945f6f913cdce1ea86a1adfaee79a9ecb10afa2a55d039f8ea1f2cd6f31");
+                break;
         }
 
         // ToDo: A wise app would check that the data file exists before blindly sending it over to Thunderword.
