@@ -30,6 +30,11 @@ public class InteractiveFictionEnginesMetaBroadcastReceiver extends BroadcastRec
                 engineProvider.providerAppPackage = intent.getStringExtra("sender");
                 engineProvider.providerAppVersionCode = intent.getIntExtra("sender_versioncode", -1);
                 engineProvider.providerEnginesAvailable = intent.getStringArrayExtra("engines_available");
+                // SHA-256 hash of story file.
+                engineProvider.providerStoriesBuiltIn = intent.getStringArrayExtra("stories_built_in");
+                // Not using this data for now, but the field is documented here. "_EN" for English.
+                // Array is same length and order as "engines_available", one to one relationship.
+                intent.getStringArrayExtra("stories_built_in_description_EN");
 
                 EchoSpot.currentEngineProvider = engineProvider;
 

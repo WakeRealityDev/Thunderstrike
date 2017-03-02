@@ -189,6 +189,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    /*
+    ================================================================================================
+    SECTION: Incoming background events from BroadcastReceivers and Services
+    These Events serve to allow thread choices of execution and to determine if the app is on-screen
+        If the app is not on screen, this Activity will be closed and the Events will silently
+        be dropped as there are no registered receivers.
+    */
+
     @SuppressWarnings("unused")
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(EventEngineProviderChange event) {
