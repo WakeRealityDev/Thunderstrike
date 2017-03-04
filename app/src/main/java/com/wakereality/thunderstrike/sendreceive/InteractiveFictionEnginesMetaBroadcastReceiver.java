@@ -35,6 +35,7 @@ public class InteractiveFictionEnginesMetaBroadcastReceiver extends BroadcastRec
                 // Not using this data for now, but the field is documented here. "_EN" for English.
                 // Array is same length and order as "stories_built_in", one to one relationship.
                 intent.getStringArrayExtra("stories_built_in_description_EN");
+                intent.getIntArrayExtra("stories_built_in_engine_code");
 
                 EchoSpot.currentEngineProvider = engineProvider;
 
