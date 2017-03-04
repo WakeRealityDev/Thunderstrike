@@ -1,7 +1,6 @@
 package com.wakereality.thunderstrike.storypresentation;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -27,7 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -228,9 +226,9 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         }, 2200L);
     }
 
-    public Intent setIntentForOutsideEngineApp(Intent intent) {
+    public Intent setIntentForOutsideEngineProviderApp(Intent intent, int engineProviderPick) {
         // If you did want to pick a specific app to execute, be it one from Wake Reality or otherwise:
-        switch (1) {
+        switch (engineProviderPick) {
             case 1:   // Wake Reality's Thunderword [experimental] app
                 intent.setPackage("com.wakereality.thunderword.experimental");
                 break;
@@ -282,7 +280,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         intent.setAction("interactivefiction.engine.glulx");
 
         // helper method to pick which app is running the engine.
-        intent = setIntentForOutsideEngineApp(intent);
+        intent = setIntentForOutsideEngineProviderApp(intent, 0 /* All Engine apps */);
 
         // Tell Thunderword to be headless with a value of 0, no screen activity & only RemGlk data exchange.
         // NOTE: For purposes of testing a "launcher app" that is not headless, values of 1 is for
@@ -384,7 +382,6 @@ public class RemoteSimpleActivity extends AppCompatActivity {
 
 
     /*
-    ToDo: a token from story launch that has to be passed back to close the game, a type of secure mode.
     Why close the engine? It can take perhaps 1/2 of a second to unload an engine. From a user interface
     perspective, it may be best to close it when a user closes a screen to pick another story so that
     it is faster in opening the new story. Typical sequence:
@@ -395,6 +392,8 @@ public class RemoteSimpleActivity extends AppCompatActivity {
      4. Story/engine load is requested (this will now seem faster because the close was done back in step 2).
 
      And on app close, save RAM/battery.
+
+    ToDo: a token from story launch that has to be passed back to close the game, a type of secure mode.
      */
     public void closeThunderwordClick(View view) {
         animateClickedView(view);
@@ -406,13 +405,11 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         // Inform the Engine Provider who to call back.
         intent.putExtra("sender", BuildConfig.APPLICATION_ID);
 
-        // Tell Thunderword Glulx story data file, it will pick default engine in absence
-        //   of additional launch parameters. The name prefix was specifically selected to encourage
-        //   the Android development community to use this pattern - and not exclusive to Thunderword.
+        // close command, this always assumes headless and will not prompt player.
         intent.setAction("interactivefiction.enginemeta.close");
 
         // helper method to pick which app is running the engine.
-        intent = setIntentForOutsideEngineApp(intent);
+        intent = setIntentForOutsideEngineProviderApp(intent, 0 /* All Engine apps */);
 
         sendBroadcast(intent);
     }
