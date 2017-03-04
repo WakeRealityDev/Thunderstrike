@@ -216,6 +216,42 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         getApplicationContext().sendBroadcast(intent);
     }
 
+
+    public void animateClickedView(final View view) {
+        // Poor man's animation to show visual feedback of click.
+        view.setAlpha(0.2f);
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setAlpha(1.0f);
+            }
+        }, 2200L);
+    }
+
+    public Intent setIntentForOutsideEngineApp(Intent intent) {
+        // If you did want to pick a specific app to execute, be it one from Wake Reality or otherwise:
+        switch (1) {
+            case 1:   // Wake Reality's Thunderword [experimental] app
+                intent.setPackage("com.wakereality.thunderword.experimental");
+                break;
+            case 2:   // Wake Reality's Thunderword app (to be released beta April 2, 2017)
+                intent.setPackage("com.wakereality.thunderword");
+                break;
+            case 3:   // Wake Reality's Thunderword LIMIT_TEST app (try to solve issue on difficult devices)
+                intent.setPackage("com.wakereality.thunderword.test");
+                break;
+            case 4:   // Other app
+                intent.setPackage("" /* Other Interactive Fiction app that wants to be engine */);
+                break;
+            case 0:
+            default:
+                // Don't set it, and let the receiving engines decide who responds
+                break;
+        }
+        return intent;
+    }
+
+
     protected static AtomicInteger launchToken = new AtomicInteger(0);
 
     /*
@@ -231,14 +267,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         int myLaunchToken = launchToken.incrementAndGet();
         Log.i("RemoteSimple", "click on launchStoryClick button, launchToken" + myLaunchToken);
 
-        // Poor man's animation to show visual feedback of click.
-        view.setBackgroundColor(Color.parseColor("#FF8A65"));
-        view.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                view.setBackgroundColor(Color.parseColor("#00FF00"));
-            }
-        }, 2200L);
+        animateClickedView(view);
 
         setupForNewStoryIncoming();
 
@@ -252,22 +281,8 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         //   the Android development community to use this pattern - and not exclusive to Thunderword.
         intent.setAction("interactivefiction.engine.glulx");
 
-        // If you did want to pick a specific app to execute, be it one from Wake Reality or otherwise:
-        switch (1) {
-            case 1:   // Wake Reality's Thunderword [experimental] app
-                intent.setPackage("com.wakereality.thunderword.experimental");
-                break;
-            case 2:   // Wake Reality's Thunderword app (to be released when mature enough)
-                intent.setPackage("com.wakereality.thunderword");
-                break;
-            case 3:   // Other app
-                intent.setPackage("" /* Other Interactive Fiction app that wants to be engine */);
-                break;
-            case 0:
-            default:
-                // Don't set it, and let the receiving engines decide who responds
-                break;
-        }
+        // helper method to pick which app is running the engine.
+        intent = setIntentForOutsideEngineApp(intent);
 
         // Tell Thunderword to be headless with a value of 0, no screen activity & only RemGlk data exchange.
         // NOTE: For purposes of testing a "launcher app" that is not headless, values of 1 is for
@@ -363,6 +378,41 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         }
 
         // ToDo: A wise app would check that the data file exists before blindly sending it over to Thunderword.
+
+        sendBroadcast(intent);
+    }
+
+
+    /*
+    ToDo: a token from story launch that has to be passed back to close the game, a type of secure mode.
+    Why close the engine? It can take perhaps 1/2 of a second to unload an engine. From a user interface
+    perspective, it may be best to close it when a user closes a screen to pick another story so that
+    it is faster in opening the new story. Typical sequence:
+
+     1. User closes Activity of your app to look at menu to pick new game
+     2. You close Thunderword with this method as user exits activity
+     3. User spends 15 seconds browsing and picking a new story
+     4. Story/engine load is requested (this will now seem faster because the close was done back in step 2).
+
+     And on app close, save RAM/battery.
+     */
+    public void closeThunderwordClick(View view) {
+        animateClickedView(view);
+
+        Intent intent = new Intent();
+        // If it is stopped, there would be no point to sending a kill command, right?
+        // DISABLED: intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+
+        // Inform the Engine Provider who to call back.
+        intent.putExtra("sender", BuildConfig.APPLICATION_ID);
+
+        // Tell Thunderword Glulx story data file, it will pick default engine in absence
+        //   of additional launch parameters. The name prefix was specifically selected to encourage
+        //   the Android development community to use this pattern - and not exclusive to Thunderword.
+        intent.setAction("interactivefiction.enginemeta.close");
+
+        // helper method to pick which app is running the engine.
+        intent = setIntentForOutsideEngineApp(intent);
 
         sendBroadcast(intent);
     }

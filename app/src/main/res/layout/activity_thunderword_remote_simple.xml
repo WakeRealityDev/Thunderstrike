@@ -26,16 +26,27 @@
             android:layout_height="wrap_content"
             android:text="Hello and welcome to Thunderstrike, the RemGlk example app for Thunderword."
             />
+
+        <TextView
+            android:id="@+id/launchStoryIntroTextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Launch:"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/topStatusTextView0"
+            android:layout_alignBaseline="@id/topStatusTextView0"
+            />
+
         <TextView
             android:id="@+id/launchStoryPickATextView0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="[LaunchA]"
+            android:text="[A]"
             android:layout_marginLeft="4dp"
             android:onClick="launchStoryClick"
-            android:layout_toRightOf="@id/topStatusTextView0"
+            android:layout_toRightOf="@id/launchStoryIntroTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#00FF00"
+            android:background="#F0FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickBTextView0"
@@ -46,7 +57,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickATextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#00FF00"
+            android:background="#F0FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickCTextView0"
@@ -57,7 +68,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickBTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#00FF00"
+            android:background="#F0FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickDTextView0"
@@ -68,7 +79,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickCTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#00FF00"
+            android:background="#F0FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickETextView0"
@@ -79,7 +90,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickDTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#F0FF00"
+            android:background="#00FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickFTextView0"
@@ -90,7 +101,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickETextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#F0FF00"
+            android:background="#00FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickGTextView0"
@@ -101,7 +112,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickFTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#00FF00"
+            android:background="#F0FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickHTextView0"
@@ -112,7 +123,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickGTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#F0FF00"
+            android:background="#00FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickITextView0"
@@ -123,7 +134,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickHTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#F0FF00"
+            android:background="#00FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickJTextView0"
@@ -134,7 +145,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickITextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#F0FF00"
+            android:background="#00FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickKTextView0"
@@ -145,7 +156,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickJTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#F0FF00"
+            android:background="#00FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickLTextView0"
@@ -156,7 +167,7 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickKTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#F0FF00"
+            android:background="#00FF00"
             />
         <TextView
             android:id="@+id/launchStoryPickMTextView0"
@@ -167,7 +178,19 @@
             android:onClick="launchStoryClick"
             android:layout_toRightOf="@id/launchStoryPickLTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
-            android:background="#F0FF00"
+            android:background="#00FF00"
+            />
+
+        <TextView
+            android:id="@+id/closeThunderwordTextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[Ω]"
+            android:layout_marginLeft="4dp"
+            android:onClick="closeThunderwordClick"
+            android:layout_toRightOf="@id/launchStoryPickMTextView0"
+            android:layout_alignBaseline="@id/topStatusTextView0"
+            android:background="#FFC1C7"
             />
     </RelativeLayout>
 
