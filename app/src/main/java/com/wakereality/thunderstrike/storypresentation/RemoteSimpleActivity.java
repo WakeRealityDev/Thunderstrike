@@ -373,6 +373,11 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 // luna.gblorb
                 intent.putExtra("datapick", "9e2e2945f6f913cdce1ea86a1adfaee79a9ecb10afa2a55d039f8ea1f2cd6f31");
                 break;
+            case R.id.launchStoryPickNTextView0:
+                // The Evil Chicken of Doom by Mel S, year 2002
+                intent.putExtra("path", "/sdcard/myfiction/chicken.taf");
+                intent.setAction("interactivefiction.engine.adrift");
+                break;
         }
 
         // ToDo: A wise app would check that the data file exists before blindly sending it over to Thunderword.
