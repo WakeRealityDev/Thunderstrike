@@ -334,14 +334,15 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 //   several actions / stream of JSON in the first 20 or so seconds.  This
                 //   story is the same one on the Thunderword welcome screen menu option labeled
                 //   "Launch Test T0" that was added in Thunderword release 121.
-                //   This is a very good story to test JSON on, as it has many windows, color options
+                //   This is a good story to test JSON presentation on, as it has many windows, color options
                 //      Glk Style Hints, etc.  The Inform 7 6M62 story source code is available.
                 // NOTE: hash is case sensitive, all lowercase
-                intent.putExtra("datapick", "aaff415aeacdf8aa73ee049f7842a609b82306c97c9f07b8e95ce7ab87ea");
+                // Story FlexibleWindowsUser1User2Styles0_R15.ulx
+                intent.putExtra("datapick", "aaff415a0eac0df8aa073ee049f7842a609b82306c97c9f007b8e95ce7ab87ea");
                 break;
             case R.id.launchStoryPickFTextView0:
                 // All Things Devours R3 .z5
-                intent.putExtra("datapick", "a0b0569c2f57a975f868242b9a1dfe40a75e6aef92d5480eb51c81a3150eb37");
+                intent.putExtra("datapick", "a0b0569c2f57a975f868242b9a1dfe400a75e6aef92d5480eb51c81a3150eb37");
                 intent.setAction("interactivefiction.engine.zmachine");
                 break;
             case R.id.launchStoryPickGTextView0:
