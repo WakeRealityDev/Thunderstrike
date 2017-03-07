@@ -191,6 +191,28 @@
             android:layout_alignBaseline="@id/topStatusTextView0"
             android:background="#F0FF00"
             />
+        <TextView
+            android:id="@+id/launchStoryPickOTextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[O]"
+            android:layout_marginLeft="4dp"
+            android:onClick="launchStoryClick"
+            android:layout_toRightOf="@id/launchStoryPickNTextView0"
+            android:layout_alignBaseline="@id/topStatusTextView0"
+            android:background="#A4E9FF"
+            />
+        <TextView
+            android:id="@+id/launchStoryPickPTextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[P]"
+            android:layout_marginLeft="4dp"
+            android:onClick="launchStoryClick"
+            android:layout_toRightOf="@id/launchStoryPickOTextView0"
+            android:layout_alignBaseline="@id/topStatusTextView0"
+            android:background="#A4E9FF"
+            />
 
         <TextView
             android:id="@+id/closeThunderwordTextView0"
@@ -199,7 +221,7 @@
             android:text="[Ω]"
             android:layout_marginLeft="4dp"
             android:onClick="closeThunderwordClick"
-            android:layout_toRightOf="@id/launchStoryPickNTextView0"
+            android:layout_toRightOf="@id/launchStoryPickPTextView0"
             android:layout_alignBaseline="@id/topStatusTextView0"
             android:background="#FFC1C7"
             />

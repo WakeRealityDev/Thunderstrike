@@ -306,7 +306,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         //   Your source code contribution to this Thunderstrike samples are welcome!
         switch (view.getId()) {
             case R.id.launchStoryPickATextView0:
-                intent.putExtra("path", "/sdcard/myfiction/rover.gblorb");
+                intent.putExtra("path", "/sdcard/myfiction/SagebrushCactus.gblorb");
                 break;
             case R.id.launchStoryPickBTextView0:
                 intent.putExtra("path", "/sdcard/myfiction/CounterfeitMonkey_release6.gblorb");
@@ -378,6 +378,17 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 // The Evil Chicken of Doom by Mel S, year 2002
                 intent.putExtra("path", "/sdcard/myfiction/chicken.taf");
                 intent.setAction("interactivefiction.engine.adrift");
+                break;
+            case R.id.launchStoryPickOTextView0:
+                // FAIL TESTING, mismatch engine, sending an adrift game to z-machine engine.
+                // The Evil Chicken of Doom by Mel S, year 2002
+                intent.putExtra("path", "/sdcard/myfiction/chicken.taf");
+                intent.setAction("interactivefiction.engine.zmachine");
+                break;
+            case R.id.launchStoryPickPTextView0:
+                // FAIL TESTING, mismatch engine, sending Glulx game to z-machine engine.
+                intent.putExtra("path", "/sdcard/myfiction/SagebrushCactus.gblorb");
+                intent.setAction("interactivefiction.engine.zmachine");
                 break;
         }
 
