@@ -225,6 +225,19 @@
             android:layout_alignBaseline="@id/topStatusTextView0"
             android:background="#FFC1C7"
             />
+
+        <TextView
+            android:id="@+id/closeThunderwordAppTextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[Ω²]"
+            android:layout_marginLeft="4dp"
+            android:onClick="closeThunderwordClick"
+            android:layout_toRightOf="@id/closeThunderwordTextView0"
+            android:layout_alignBaseline="@id/topStatusTextView0"
+            android:background="#FFC1C7"
+            />
+
     </RelativeLayout>
 
     <RelativeLayout

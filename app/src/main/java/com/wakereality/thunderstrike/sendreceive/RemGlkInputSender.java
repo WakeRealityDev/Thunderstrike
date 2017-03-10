@@ -30,6 +30,8 @@ public class RemGlkInputSender {
         Intent update = new Intent(broadcastTarget);
         update.putExtra("payload", event.payload);
         update.putExtra("use", event.useIndicator);
+        update.putExtra("glkwindow", event.windowId);
+        update.putExtra("inputgeneration", event.windowGeneration);
         Log.v("GlkInputSender", "[dataToEngine] send: " + event.payload.replace("\n", "~~CR~~") + "' useIndicator " + event.useIndicator);
         appContext.sendBroadcast(update);
     }

@@ -101,7 +101,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
             Log.w("RemoteSimple", "[dataToEngine] DUPLICATE_SEND_FAILURE, skip");
         } else {
             inputLastGenSend = thisGen;
-            PayloadToEngine eventPayloadToEngine = new PayloadToEngine(tempJSONObject.toString(), EngineConst.PAYLOAD_TO_ENGINE_USE_GENERAL_PURPOSE);
+            PayloadToEngine eventPayloadToEngine = new PayloadToEngine(tempJSONObject.toString(), EngineConst.PAYLOAD_TO_ENGINE_USE_GENERAL_PURPOSE, inputForSingleGlkWindow.windowId, thisGen);
             Log.i("RemoteSimple", "[dataToEngine] " + eventPayloadToEngine.payload);
             EventBus.getDefault().post(eventPayloadToEngine);
         }
@@ -424,6 +424,11 @@ public class RemoteSimpleActivity extends AppCompatActivity {
 
         // close command, this always assumes headless and will not prompt player.
         intent.setAction("interactivefiction.enginemeta.close");
+
+        // Secret semaphore to Thunderword to insist on app total shutdown.
+        if (view.getId() == R.id.closeThunderwordAppTextView0) {
+            intent.putExtra("xyzzy", "Joyce");
+        }
 
         // helper method to pick which app is running the engine.
         intent = setIntentForOutsideEngineProviderApp(intent, 0 /* All Engine apps */);
