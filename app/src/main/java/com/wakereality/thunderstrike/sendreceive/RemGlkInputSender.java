@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.wakereality.thunderstrike.EchoSpot;
 import com.wakereality.thunderstrike.dataexchange.PayloadToEngine;
 
 import org.greenrobot.eventbus.EventBus;
@@ -32,7 +33,13 @@ public class RemGlkInputSender {
         update.putExtra("use", event.useIndicator);
         update.putExtra("glkwindow", event.windowId);
         update.putExtra("inputgeneration", event.windowGeneration);
-        Log.v("GlkInputSender", "[dataToEngine] send: " + event.payload.replace("\n", "~~CR~~") + "' useIndicator " + event.useIndicator);
+        if (EchoSpot.currentEngineProvider != null) {
+            Log.v("GlkInputSender", "[dataToEngine] send: " + event.payload.replace("\n", "~~CR~~") + "' useIndicator " + event.useIndicator + " app " + EchoSpot.currentEngineProvider.providerAppPackage);
+            // Send to specific selected Engine Provider.
+            update.setPackage(EchoSpot.currentEngineProvider.providerAppPackage);
+        } else {
+            Log.e("GlkInputSender", "[dataToEngine] EchoSpot.currentEngineProvider is NULL. send: " + event.payload.replace("\n", "~~CR~~") + "' useIndicator " + event.useIndicator);
+        }
         appContext.sendBroadcast(update);
     }
 }
