@@ -347,7 +347,10 @@ public class RemoteSimpleActivity extends AppCompatActivity {
                 break;
             case R.id.launchStoryPickGTextView0:
                 // Level 9 / V4 / Red Moon (second part of Time and Magik)
-                intent.putExtra("path", "/sdcard/myfiction/REDMOON.SNA");
+                // intent.putExtra("path", "/sdcard/myfiction/REDMOON.SNA");
+                // Level 9 / V3 / Return to Eden / SHA-256 4b0f25bd26abb0e00f224bb72307b0bcc6f28d449590256a98502957979d6587
+                // Return to Eden should trigger app to app payload compression as it has a large amount of pixel graphic elements.
+                intent.putExtra("path", "/sdcard/myfiction/EDEN.SNA");
                 intent.setAction("interactivefiction.engine.level9");
                 break;
             case R.id.launchStoryPickHTextView0:
