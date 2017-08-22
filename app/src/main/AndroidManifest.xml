@@ -52,6 +52,12 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".sendreceive.InteractiveFictionEngineCommandCodeResult">
+            <intent-filter>
+                <action android:name="interactivefiction.enginemeta.commandcode.result" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
