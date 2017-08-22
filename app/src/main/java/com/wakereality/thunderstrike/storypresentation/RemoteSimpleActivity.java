@@ -172,6 +172,11 @@ public class RemoteSimpleActivity extends AppCompatActivity {
         topStatusTextView0.append("Redraw #" + redrawCount);
         topStatusTextView0.append(" Engine State: " + thunderWordRemoteEngineStateCode);
         topStatusTextView0.append(" RemGlk Gen: " + remGlkUpdateGeneration);
+        if (inputForSingleGlkWindow.lineInputMode) {
+            inputEditText0.setHint("player input here (Glk line mode)");
+        } else {
+            inputEditText0.setHint("player input here (Glk character mode)");
+        }
     }
 
     @Override
