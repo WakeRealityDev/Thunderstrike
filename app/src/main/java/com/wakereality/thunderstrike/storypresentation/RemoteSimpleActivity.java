@@ -1,6 +1,5 @@
 package com.wakereality.thunderstrike.storypresentation;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.wakereality.thunderstrike.BuildConfig;
 import com.wakereality.thunderstrike.R;
 import com.wakereality.thunderstrike.dataexchange.EngineConst;
 import com.wakereality.thunderstrike.sendreceive.RemGlkInputSender;
@@ -66,7 +64,7 @@ public class RemoteSimpleActivity extends AppCompatActivity {
     protected int redrawCount = 0;
     protected int thunderWordRemoteEngineStateCode = -1;
     protected int remGlkUpdateGeneration = -1;
-    UserCommandsToEngine userCommandsToEngine;
+    protected UserCommandsToEngine userCommandsToEngine;
 
     private class GlkInputForWindow {
         public int windowId;
